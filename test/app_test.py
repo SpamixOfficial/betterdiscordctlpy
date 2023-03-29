@@ -1,3 +1,4 @@
+import logging
 import os
 import subprocess
 import unittest
@@ -7,10 +8,12 @@ import betterdiscordpy
 
 class AppTest(unittest.TestCase):
     def setUp(self) -> None:
-        os.chdir("../")
+        if os.getcwd().endswith("test"):
+            os.chdir("../")
 
     def tearDown(self) -> None:
-        os.chdir("test")
+        if not os.getcwd().endswith("test"):
+            os.chdir("test")
 
     def testVersion(self) -> None:
         output = subprocess.run(
