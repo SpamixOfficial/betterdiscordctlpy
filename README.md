@@ -9,6 +9,7 @@ A Python wrapper for [BetterDiscord](https://betterdiscord.app/) on Linux (Windo
 - [x] version info
 - [x] help message
 - [x] verbosity control
+- [x] prepare a Docker image based on Ubuntu, so it can be properly tested
 - [ ] logic for Linux ported from [the original `sh` script](https://github.com/bb010g/betterdiscordctl/blob/master/betterdiscordctl):
   - [ ] BetterDiscord installation
   - [ ] BetterDiscord re-installation
@@ -52,11 +53,26 @@ dev/setup.sh
 ```
 
 ### Testing
-Tests work in assumption that the working directory is the repository's root. To run all tests use [run_all_tests.sh](dev/run_all_tests.sh):
+Tests work in assumption that the working directory is the repository's root. To run all tests use:
 
 ```shell
-dev/run_all_tests.sh
+python3 -m unittest discover
 ```
+
+### Docker
+**Please DO NOT use it locally, it is meant for the CI purposes**
+#### Building the image
+```shell
+docker build -t betterdiscordpy -f docker/Dockerfile .
+```
+
+#### Running the container
+```shell
+docker run -d --name betterdiscordpy --tmpfs /run --tmpfs /run/lock --tmpfs /tmp --privileged -v /lib/modules:/lib/modules:ro -v /sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns host betterdiscordpy 
+```
+
+Note that to test `snap` it is needed to do `systemctl start snapd && snap install discord` in the running container.
+
 
 ## Credits
 ### Inspiration

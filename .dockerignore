@@ -1,0 +1,11 @@
+.dockerignore
+.gitignore
+.pre-commit-config.yaml
+betterdiscordctl
+LICENSE.md
+pylintrc
+README.md
+.git
+.idea
+__pycache__
+venv
