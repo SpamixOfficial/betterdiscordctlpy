@@ -1,6 +1,6 @@
-# betterdiscordctl Python edition
+# betterdiscordpy
 
-A Python edition of wrapper for BetterDiscord on Linux (Python allows to add Windows and macOS support in the future).
+A Python wrapper for [BetterDiscord](https://betterdiscord.app/) on Linux (Windows and macOS support planned in the future).
 
 ## Roadmap
 - [x] `pre-commit` with `pylint` and other useful, generic inspections added
@@ -8,7 +8,7 @@ A Python edition of wrapper for BetterDiscord on Linux (Python allows to add Win
 - [x] version info
 - [x] help message
 - [x] verbosity control
-- [ ] logic for Linux ported from the original `sh` script:
+- [ ] logic for Linux ported from [the original `sh` script](https://github.com/bb010g/betterdiscordctl/blob/master/betterdiscordctl):
   - [ ] BetterDiscord installation
   - [ ] BetterDiscord re-installation
   - [ ] BetterDiscord removal
