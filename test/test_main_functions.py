@@ -3,43 +3,43 @@ import logging
 import os
 import unittest
 
-import betterdiscordpy
-from util import exceptions
+from betterdiscordpy import betterdiscord
+from betterdiscordpy.src.util import exceptions
 
 
-class MainFunctionsTest(unittest.TestCase):
+class TestMainFunctions(unittest.TestCase):
     def testVerbosityLevelGetter(self) -> None:
         self.assertRaises(
-            exceptions.InvalidVerbosityConfigurationException, betterdiscordpy.getVerbosityLevel,
+            exceptions.InvalidVerbosityConfigurationException, betterdiscord.getVerbosityLevel,
             argparse.Namespace(quiet=True, verbose=True),
         )
         self.assertEqual(
             logging.WARNING,
-            betterdiscordpy.getVerbosityLevel(argparse.Namespace(quiet=True, verbose=False)),
+            betterdiscord.getVerbosityLevel(argparse.Namespace(quiet=True, verbose=False)),
         )
         self.assertEqual(
             logging.DEBUG,
-            betterdiscordpy.getVerbosityLevel(argparse.Namespace(quiet=False, verbose=True)),
+            betterdiscord.getVerbosityLevel(argparse.Namespace(quiet=False, verbose=True)),
         )
         self.assertEqual(
             logging.INFO,
-            betterdiscordpy.getVerbosityLevel(argparse.Namespace(quiet=False, verbose=False)),
+            betterdiscord.getVerbosityLevel(argparse.Namespace(quiet=False, verbose=False)),
         )
 
     def testConfigDirGetter(self) -> None:
         self.assertRaises(
-            exceptions.InvalidInstallTypeException, betterdiscordpy.getLinuxConfigDir,
+            exceptions.InvalidInstallTypeException, betterdiscord.getLinuxConfigDir,
             "I don't exist",
         )
         self.assertEqual(
-            betterdiscordpy.TRADITIONAL_LINUX_CONFIG_DIR,
-            betterdiscordpy.getLinuxConfigDir("traditional"),
+            betterdiscord.TRADITIONAL_LINUX_CONFIG_DIR,
+            betterdiscord.getLinuxConfigDir("traditional"),
         )
 
         os.environ["SNAP_USER_DATA"] = "dummy"
         self.assertEqual(
             os.path.join("dummy", "discord", ".config"),
-            betterdiscordpy.getLinuxConfigDir("snap"),
+            betterdiscord.getLinuxConfigDir("snap"),
         )
         os.environ["SNAP_USER_DATA"] = ""
 

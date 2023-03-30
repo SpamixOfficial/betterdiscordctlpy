@@ -6,8 +6,12 @@ import os
 import subprocess
 import sys
 
-from commands import AVAILABLE_COMMANDS
-from util import exceptions
+try:
+    from betterdiscordpy.src.commands import AVAILABLE_COMMANDS
+    from betterdiscordpy.src.util import exceptions
+except ImportError:
+    from src.commands import AVAILABLE_COMMANDS
+    from src.util import exceptions
 
 APP_NAME: str = "betterdiscordctl"
 VERSION: str = "2.0.1"

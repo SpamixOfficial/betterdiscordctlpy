@@ -2,10 +2,10 @@ import argparse
 import logging
 import unittest
 
-import commands
+from betterdiscordpy.src import commands
 
 
-class CommandsTest(unittest.TestCase):
+class TestCommands(unittest.TestCase):
     def validateLogMessage(self, log: str, level: str, message: str) -> None:
         self.assertIn(level, log)
         self.assertIn(message, log)
