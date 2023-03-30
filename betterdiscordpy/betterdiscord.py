@@ -13,18 +13,9 @@ except ImportError:
     from src.commands import AVAILABLE_COMMANDS
     from src.util import exceptions
 
-APP_NAME: str = "betterdiscordctl"
-VERSION: str = "2.0.1"
+APP_NAME: str = "betterdiscordpy"
+VERSION: str = "1.0.0"
 TRADITIONAL_LINUX_CONFIG_DIR: str = "~/.config/"
-
-d_flavors: list[str] = [
-    "canary",
-    "ptb",
-    "development",
-]
-
-# FIXME should be some binary release in the future
-self_upgrade_url: str = "https://github.com/bb010g/betterdiscordctl/raw/master/betterdiscordctl"
 
 
 def getVerbosityLevel(arguments: argparse.Namespace) -> int:
@@ -61,9 +52,6 @@ def getLinuxConfigDir(installation_type: str) -> str:
 
         default_flatpak_config = f".var/app/{discord_app_name}/config"
         return os.path.join(os.getenv("HOME"), default_flatpak_config)
-
-    raise exceptions.InvalidInstallTypeException(installation_type)
-    # TODO add win & mac in future
 
 
 def getArgumentsParser() -> argparse.ArgumentParser:

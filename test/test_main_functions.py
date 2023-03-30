@@ -27,10 +27,6 @@ class TestMainFunctions(unittest.TestCase):
         )
 
     def testConfigDirGetter(self) -> None:
-        self.assertRaises(
-            exceptions.InvalidInstallTypeException, betterdiscord.getLinuxConfigDir,
-            "I don't exist",
-        )
         self.assertEqual(
             betterdiscord.TRADITIONAL_LINUX_CONFIG_DIR,
             betterdiscord.getLinuxConfigDir("traditional"),
